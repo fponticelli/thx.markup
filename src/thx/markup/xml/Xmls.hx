@@ -12,7 +12,10 @@ class Xmls
       case Xml.DocType:
         Xml.createDocType(xml.nodeValue);
       case Xml.Document:
-        Xml.createDocument();
+        var doc = Xml.createDocument();
+        for(child in xml.iterator())
+          doc.addChild(clone(child));
+        doc;
       case Xml.Element:
         var el = Xml.createElement(xml.nodeName);
         for(attr in xml.attributes())
